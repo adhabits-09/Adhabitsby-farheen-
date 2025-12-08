@@ -47,6 +47,7 @@
       --pure-white: #FFFFFF;
       --charcoal: #212121;
       --success:#00C9B7;
+      --whatsapp: #25D366; /* WhatsApp official green */
       --warm-shadow:0 6px 20px rgba(233,30,99,.12);
       --warm-shadow-hover:0 10px 30px rgba(233,30,99,.18);
       --warm-glow:0 0 25px rgba(255,107,107,.4);
@@ -117,6 +118,17 @@
     .animate-fade-in{animation:fadeInUp .6s ease-out forwards;opacity:0;}
     .animate-stagger{animation:fadeInUp .6s ease-out forwards;animation-delay:calc(var(--order) * .1s);opacity:0;}
     
+    /* ===== SCROLL ANIMATION ===== */
+    .scroll-section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+    .scroll-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
     @keyframes white-glitch{
       0%,100%{transform:translateX(0) skew(0deg);opacity:1;}
       10%{transform:translateX(-2px) skew(-1deg);opacity:.9;}
@@ -170,6 +182,8 @@
       font-size:1.125rem;
       line-height:1.4;
     }
+    
+    /* ===== BUTTON STYLES ===== */
     .wa-btn{
       background:linear-gradient(135deg,var(--coral),var(--primary-pink));
       color:var(--pure-white);
@@ -195,10 +209,46 @@
     }
     .wa-btn:active{transform:translateY(0) scale(.98);}
     .wa-btn>*{position:relative;z-index:1;}
+    
+    /* ===== WHATSAPP GREEN BUTTONS ===== */
+    .wa-green-btn{
+      background:linear-gradient(135deg,var(--whatsapp),#128C7E);
+      color:var(--pure-white);
+      padding:.85rem 1.8rem;
+      border-radius:50px;
+      font-weight:700;
+      border:none;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      box-shadow:0 8px 20px rgba(37,211,102,.3);
+      cursor:pointer;
+      transition:all .3s ease;
+      text-decoration:none;
+      font-size:1rem;
+      white-space:nowrap;
+      position:relative;
+      overflow:hidden;
+    }
+    .wa-green-btn:hover{
+      transform:translateY(-3px) scale(1.03);
+      box-shadow:0 0 40px rgba(37,211,102,.6),0 15px 30px rgba(37,211,102,.4);
+    }
+    .wa-green-btn:active{transform:translateY(0) scale(.98);}
 
     /* About Section */
     .about-content {
       padding-left: 0.5rem;
+    }
+    .video-btn-label{
+      background:linear-gradient(135deg,var(--primary-pink),var(--coral));
+      color:var(--pure-white);
+      padding:.6rem 1.5rem;
+      border-radius:50px;
+      font-weight:600;
+      display:inline-block;
+      margin-bottom:1rem;
+      box-shadow:var(--warm-shadow);
     }
     .stat-card{
       background:var(--pure-white);
@@ -346,6 +396,7 @@
       .feedback-item{width:220px;height:280px;}
       .counter{font-size:1.6rem;}
       .wa-btn{width:100%;justify-content:center;}
+      .wa-green-btn{width:100%;justify-content:center;}
       h1{font-size:2rem !important;}
       h2{font-size:1.5rem !important;}
     }
@@ -362,7 +413,7 @@
 <div class="form-backdrop" id="formBackdrop"></div>
 
 <!-- ===== HERO SECTION ===== -->
-<section class="hero-section text-center">
+<section class="hero-section text-center scroll-section">
   <div class="container position-relative">
     <div class="badge-custom animate-stagger glow-pulse mb-3" style="--order:1;">🚺 Women Only Community</div>
     <h1 class="display-3 fw-bold gradient-text mb-2 animate-stagger" style="--order:2;">
@@ -375,11 +426,18 @@
 </section>
 
 <!-- ===== ABOUT SECTION WITH VIDEO ===== -->
-<section class="py-5 bg-white">
+<section class="py-5 bg-white scroll-section">
   <div class="container">
     <div class="row g-4 align-items-center">
       <div class="col-lg-6 animate-stagger" style="--order:1;">
-        <div class="wa-btn glow-pulse mb-3 d-inline-block">👇 First Watch This Full Video 👇</div>
+        <!-- NEW WHATSAPP BUTTON ADDED ABOVE VIDEO BUTTON -->
+        <button class="wa-green-btn mb-3 open-any shine-effect glitch-effect" data-source="Video Section">
+          <i data-lucide="message-circle" width="20"></i>
+          Connect on WhatsApp
+        </button>
+        <!-- VIDEO BUTTON -->
+        <div class="video-btn-label glow-pulse mb-3">👇 First Watch This Full Video 👇</div>
+        <!-- VIDEO -->
         <div class="ratio ratio-16x9" style="border-radius:15px;overflow:hidden;box-shadow:var(--warm-shadow-hover);">
           <iframe src="https://www.youtube.com/embed/n25J8WqnWsA?si=tCCkijFWfw6KiQDg" allowfullscreen loading="lazy"></iframe>
         </div>
@@ -395,7 +453,8 @@
           <p class="fs-5">Ab aur bhi strong ban ke saath me growth karna chahti hoon - ready ho toh WhatsApp karein 👇</p>
         </div>
         
-        <button class="wa-btn mb-4 open-any shine-effect glitch-effect" data-source="About Section">
+        <!-- CHANGED TO WHATSAPP GREEN BUTTON -->
+        <button class="wa-green-btn mb-4 open-any shine-effect glitch-effect" data-source="About Section">
           <i data-lucide="message-circle" width="20"></i>
           Connect on WhatsApp
         </button>
@@ -425,32 +484,29 @@
   </div>
 </section>
 
-<!-- ===== REMOVED SEPARATE VIDEO SECTION (now in About) ===== -->
-
 <!-- ===== AUTO-SCROLLING FEEDBACK SECTION ===== -->
-<section class="py-5" style="background: linear-gradient(135deg, var(--creamy-peach), var(--pure-white));">
+<section class="py-5 scroll-section" style="background: linear-gradient(135deg, var(--creamy-peach), var(--pure-white));">
   <div class="container">
     <h2 class="text-center display-5 fw-bold mb-3 animate-stagger" style="--order:1;">✨ Real Success Stories</h2>
     <p class="text-center text-muted mb-4 animate-stagger" style="--order:2;">See authentic feedback from our thriving community</p>
     
     <div class="feedback-viewport animate-stagger" style="--order:3;">
       <div class="feedback-track">
-        <!-- Original Images -->
-        <div class="feedback-item"><img src="https://i.postimg.cc/CxsfTTwk/FArheen-Fb-7.png" alt="Student Success 1" loading="lazy"></div>
-        <div class="feedback-item"><img src="https://i.postimg.cc/DwTbMy3b/FArheen-Fb-5.png" alt="Student Success 2" loading="lazy"></div>
-        <div class="feedback-item"><img src="https://i.postimg.cc/zGrRcXYJ/FArheen-Fb-4.png" alt="Student Success 3" loading="lazy"></div>
-        <div class="feedback-item"><img src="https://i.postimg.cc/8zSr0Pgk/FArheen-Fb-3.png" alt="Student Success 4" loading="lazy"></div>
-        <div class="feedback-item"><img src="https://i.postimg.cc/K82gHvhx/FArheen-Fb-2.png" alt="Student Success 5" loading="lazy"></div>
-        <div class="feedback-item"><img src="https://i.postimg.cc/Njcrzfvt/FArheen-Fb-1.png" alt="Student Success 6" loading="lazy"></div>
-        <div class="feedback-item"><img src="https://i.postimg.cc/FFwS0VP8/FArheen-Fb-6.png" alt="Student Success 7" loading="lazy"></div>
-        <!-- Duplicate for seamless loop -->
-        <div class="feedback-item"><img src="https://i.postimg.cc/Sx2tDdqn/Farheen-Fb-9.jpg" alt="Student Success 1" loading="lazy"></div>
-        <div class="feedback-item"><img src="https://i.postimg.cc/FFTWv8H4/Farheen-Fb-10.jpg" alt="Student Success 2" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/LzShctwp/aisha-ff-1.jpg" alt="Student Success 1" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/7NTT55yL/Aisha-ff-2.jpg" alt="Student Success 2" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/KcBKD88H/Aisha-ff-3.jpg" alt="Student Success 3" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/SwvqJh05/Aisha-ff-4.jpg" alt="Student Success 4" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/ymzt28qt/Aisha-ff-5.jpg" alt="Student Success 5" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/0j4MZN6c/Aisha-Ff-6.jpg" alt="Student Success 6" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/rRg4XvH4/Aisha-ff-7.jpg" alt="Student Success 7" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/LzShctwp/aisha-ff-1.jpg" alt="Student Success 1" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/7NTT55yL/Aisha-ff-2.jpg" alt="Student Success 2" loading="lazy"></div>
       </div>
     </div>
     
     <div class="text-center mt-4">
-      <button class="wa-btn open-any shine-effect glitch-effect" data-source="Feedback Section">
+      <!-- CHANGED TO WHATSAPP GREEN BUTTON -->
+      <button class="wa-green-btn open-any shine-effect glitch-effect" data-source="Feedback Section">
         <i data-lucide="message-circle" width="20"></i>
         Join Our Success Stories
       </button>
@@ -459,7 +515,7 @@
 </section>
 
 <!-- ===== STEPS SECTION ===== -->
-<section class="py-5 bg-white">
+<section class="py-5 bg-white scroll-section">
   <div class="container">
     <h2 class="text-center display-5 fw-bold mb-4">What Happens When You Join?</h2>
     <div class="row g-3">
@@ -510,7 +566,8 @@
     </div>
 
     <div class="text-center mt-5">
-      <button class="wa-btn open-any shine-effect glitch-effect" data-source="Steps">
+      <!-- CHANGED TO WHATSAPP GREEN BUTTON -->
+      <button class="wa-green-btn open-any shine-effect glitch-effect" data-source="Steps">
         <i data-lucide="message-circle" width="20"></i>
         Get Started Now
       </button>
@@ -519,7 +576,7 @@
 </section>
 
 <!-- ===== FAQ SECTION ===== -->
-<section class="py-5" style="background: linear-gradient(135deg, var(--creamy-peach), var(--pure-white));">
+<section class="py-5 scroll-section" style="background: linear-gradient(135deg, var(--creamy-peach), var(--pure-white));">
   <div class="container">
     <h2 class="text-center display-5 fw-bold mb-4">Frequently Asked Questions</h2>
     <div class="row justify-content-center">
@@ -552,7 +609,7 @@
 </section>
 
 <!-- ===== FINAL CTA SECTION ===== -->
-<section class="py-5 text-white" style="background: linear-gradient(135deg, var(--midnight), var(--primary-pink));">
+<section class="py-5 text-white scroll-section" style="background: linear-gradient(135deg, var(--midnight), var(--primary-pink));">
   <div class="container text-center">
     <h2 class="display-4 fw-bold mb-3">Ready to Transform Your Life?</h2>
     <p class="fs-5 mb-4">Join thousands of women on their journey to skill-based independence</p>
@@ -566,7 +623,8 @@
         <div class="col-md-4"><div class="glow-border text-dark p-3 rounded" style="background: var(--creamy-peach);"><strong>💼 Profession:</strong> Current Status</div></div>
       </div>
       
-      <button class="wa-btn open-any glow-pulse glitch-effect" data-source="Final CTA" style="background: white; color: var(--coral);">
+      <!-- CHANGED TO WHATSAPP GREEN BUTTON -->
+      <button class="wa-green-btn open-any glow-pulse glitch-effect" data-source="Final CTA">
         <i data-lucide="message-circle" width="22"></i>
         Message on WhatsApp Now
       </button>
@@ -579,7 +637,7 @@
     
     <p class="fs-6 mb-2">✨ Empower her with skills • 🌈 Support her with vision • 🚀 Dreams to direction</p>
     <p class="fs-4 fw-bold mb-1">❤️ <strong>With Strength & Sincerity, Farheen Almas</strong></p>
-    <p class="fs-6 opacity-90 mb-0">Creat By Adhabits </p>
+    <p class="fs-6 opacity-90 mb-0">👩‍🏫 Empowering Females to Empower</p>
   </div>
 </section>
 
@@ -661,6 +719,20 @@ const counterObserver=new IntersectionObserver(entries=>{
   });
 },{threshold:0.3});
 counters.forEach(counter=>counterObserver.observe(counter));
+
+// ===== SCROLL ANIMATION FOR SECTIONS =====
+const scrollSections=document.querySelectorAll('.scroll-section');
+const sectionObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{threshold:0.15});
+
+scrollSections.forEach(section=>{
+  sectionObserver.observe(section);
+});
 
 // ===== GOOGLE SHEET + WHATSAPP FORM LOGIC =====
 const formBackdrop=document.getElementById('formBackdrop');
