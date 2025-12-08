@@ -183,11 +183,11 @@
       line-height:1.4;
     }
     
-    /* ===== BUTTON STYLES ===== */
+    /* ===== BUTTON STYLES (Reduced Size) ===== */
     .wa-btn{
       background:linear-gradient(135deg,var(--coral),var(--primary-pink));
       color:var(--pure-white);
-      padding:.85rem 1.8rem;
+      padding:.75rem 1.5rem;
       border-radius:50px;
       font-weight:700;
       border:none;
@@ -198,7 +198,7 @@
       cursor:pointer;
       transition:all .3s ease;
       text-decoration:none;
-      font-size:1rem;
+      font-size:.9rem;
       white-space:nowrap;
       position:relative;
       overflow:hidden;
@@ -210,11 +210,11 @@
     .wa-btn:active{transform:translateY(0) scale(.98);}
     .wa-btn>*{position:relative;z-index:1;}
     
-    /* ===== WHATSAPP GREEN BUTTONS ===== */
+    /* ===== WHATSAPP GREEN BUTTONS (Reduced Size) ===== */
     .wa-green-btn{
       background:linear-gradient(135deg,var(--whatsapp),#128C7E);
       color:var(--pure-white);
-      padding:.85rem 1.8rem;
+      padding:.75rem 1.5rem;
       border-radius:50px;
       font-weight:700;
       border:none;
@@ -225,7 +225,7 @@
       cursor:pointer;
       transition:all .3s ease;
       text-decoration:none;
-      font-size:1rem;
+      font-size:.9rem;
       white-space:nowrap;
       position:relative;
       overflow:hidden;
@@ -240,6 +240,12 @@
     .about-content {
       padding-left: 0.5rem;
     }
+    /* Professional Bio Container */
+    .bio-compact{
+      font-size:0.95rem;
+      line-height:1.5;
+      margin-bottom:1.5rem;
+    }
     .video-btn-label{
       background:linear-gradient(135deg,var(--primary-pink),var(--coral));
       color:var(--pure-white);
@@ -249,6 +255,15 @@
       display:inline-block;
       margin-bottom:1rem;
       box-shadow:var(--warm-shadow);
+    }
+    /* Center video button on mobile */
+    @media(max-width:768px){
+      .video-btn-label{
+        display:block;
+        text-align:center;
+        margin-left:auto;
+        margin-right:auto;
+      }
     }
     .stat-card{
       background:var(--pure-white);
@@ -430,7 +445,7 @@
   <div class="container">
     <div class="row g-4 align-items-center">
       <div class="col-lg-6 animate-stagger" style="--order:1;">
-        <!-- NEW WHATSAPP BUTTON ADDED ABOVE VIDEO BUTTON -->
+        <!-- NEW WHATSAPP BUTTON ABOVE VIDEO BUTTON -->
         <button class="wa-green-btn mb-3 open-any shine-effect glitch-effect" data-source="Video Section">
           <i data-lucide="message-circle" width="20"></i>
           Connect on WhatsApp
@@ -446,14 +461,15 @@
         <div class="badge-custom mb-2 glow-pulse">💫 Your Coach</div>
         <h2 class="display-5 fw-bold mb-3">Hi, I'm Farheen Almas</h2>
         
-        <div class="mb-4">
-          <p class="fs-5 mb-2">🏡 Ek homemaker se skill mentor tak ka safar</p>
-          <p class="fs-5 mb-2">💻 Freelancer & Digital Skills Expert</p>
-          <p class="fs-5 mb-2">🎯 My Vision: "Empowering Females to Empower"</p>
-          <p class="fs-5">Ab aur bhi strong ban ke saath me growth karna chahti hoon - ready ho toh WhatsApp karein 👇</p>
+        <!-- PROFESSIONAL COMPACT BIO (4 lines) -->
+        <div class="bio-compact">
+          <p class="mb-2">🏡 Homemaker → Skill Mentor | 💻 Digital Expert</p>
+          <p class="mb-2">🎯 Empowering Females to Empower</p>
+          <p class="mb-2">✨ 2+ Years | 300+ Students</p>
+          <p class="mb-0">Ready to grow? Connect 👇</p>
         </div>
         
-        <!-- CHANGED TO WHATSAPP GREEN BUTTON -->
+        <!-- WHATSAPP GREEN BUTTON -->
         <button class="wa-green-btn mb-4 open-any shine-effect glitch-effect" data-source="About Section">
           <i data-lucide="message-circle" width="20"></i>
           Connect on WhatsApp
@@ -505,7 +521,6 @@
     </div>
     
     <div class="text-center mt-4">
-      <!-- CHANGED TO WHATSAPP GREEN BUTTON -->
       <button class="wa-green-btn open-any shine-effect glitch-effect" data-source="Feedback Section">
         <i data-lucide="message-circle" width="20"></i>
         Join Our Success Stories
@@ -566,7 +581,6 @@
     </div>
 
     <div class="text-center mt-5">
-      <!-- CHANGED TO WHATSAPP GREEN BUTTON -->
       <button class="wa-green-btn open-any shine-effect glitch-effect" data-source="Steps">
         <i data-lucide="message-circle" width="20"></i>
         Get Started Now
@@ -623,7 +637,6 @@
         <div class="col-md-4"><div class="glow-border text-dark p-3 rounded" style="background: var(--creamy-peach);"><strong>💼 Profession:</strong> Current Status</div></div>
       </div>
       
-      <!-- CHANGED TO WHATSAPP GREEN BUTTON -->
       <button class="wa-green-btn open-any glow-pulse glitch-effect" data-source="Final CTA">
         <i data-lucide="message-circle" width="22"></i>
         Message on WhatsApp Now
@@ -800,7 +813,6 @@ mainForm.addEventListener('submit',e=>{
   }).catch(err=>console.error('Sheet error:',err));
 
   // ---- 2) WHATSAPP MESSAGE REDIRECT (SIMPLE MESSAGE ONLY) ----
-  // ✅ UPDATED: Simple message without personal data
   const message=encodeURIComponent(
     `I'm ready to start my skill journey. Please share next steps.`
   );
